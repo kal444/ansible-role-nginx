@@ -35,7 +35,7 @@ http {
     keepalive_requests {{ nginx_keepalive_requests }};
     keepalive_timeout  {{ nginx_keepalive_timeout }};
 
-    send_timeout {{ nginx_send_timeout }}
+    send_timeout {{ nginx_send_timeout }};
     sendfile {{ nginx_sendfile }};
     tcp_nopush {{ nginx_tcp_nopush }};
     tcp_nodelay {{ nginx_tcp_nodelay }};
