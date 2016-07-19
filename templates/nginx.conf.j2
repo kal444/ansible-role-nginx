@@ -1,39 +1,40 @@
-user  {{ nginx_user }};
+user {{ nginx_user }};
 
-pid        {{ nginx_pidfile }};
+pid {{ nginx_pidfile }};
 
-error_log  {{ nginx_error_log }};
+error_log {{ nginx_error_log }};
 
-worker_processes  {{ nginx_worker_processes }};
+worker_processes {{ nginx_worker_processes }};
+worker_rlimit_nofile {{ nginx_worker_rlimit_nofile }};
 
 {% if nginx_extra_main_options %}
 {{ nginx_extra_main_options }}
 {% endif %}
 
 events {
-    worker_connections  {{ nginx_worker_connections }};
+    worker_connections {{ nginx_worker_connections }};
     multi_accept {{ nginx_multi_accept }};
 }
 
 http {
     server_tokens {{ nginx_server_tokens }};
 
-    include       {{ nginx_mime_file_path }};
-    default_type  application/octet-stream;
+    include {{ nginx_mime_file_path }};
+    default_type application/octet-stream;
 
     client_max_body_size {{ nginx_client_max_body_size }};
 
     server_names_hash_bucket_size {{ nginx_server_names_hash_bucket_size }};
     types_hash_bucket_size {{ nginx_types_hash_bucket_size }};
 
-    log_format  main  '$remote_addr - $remote_user [$time_local] "$request" '
-                      '$status $body_bytes_sent "$http_referer" '
-                      '"$http_user_agent" "$http_x_forwarded_for"';
+    log_format main '$remote_addr - $remote_user [$time_local] "$request" '
+                    '$status $body_bytes_sent "$http_referer" '
+                    '"$http_user_agent" "$http_x_forwarded_for"';
 
-    access_log  {{ nginx_access_log }};
+    access_log {{ nginx_access_log }};
 
     keepalive_requests {{ nginx_keepalive_requests }};
-    keepalive_timeout  {{ nginx_keepalive_timeout }};
+    keepalive_timeout {{ nginx_keepalive_timeout }};
 
     send_timeout {{ nginx_send_timeout }};
     sendfile {{ nginx_sendfile }};

@@ -2,6 +2,7 @@
 # defaults file for ansible-role-nginx
 # main
 nginx_worker_processes: "2"
+nginx_worker_rlimit_nofile: "65535"
 
 nginx_extra_main_options: ""
 # Example extra main options, used within the main nginx's context:
