@@ -53,6 +53,8 @@ nginx_upstreams: []
 #     "srv3.example.com"
 #   }
 
+nginx_use_cloudflare: false
+
 # vhosts
 nginx_remove_default_vhost: false
 

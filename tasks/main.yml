@@ -21,6 +21,13 @@
   notify:
     - reload nginx
 
+- name: copy CloudFlare real-ip-config if using it
+  copy: src=cloudflare-real-ip-mapping.conf dest="{{ nginx_conf_path }}" owner=root group=root mode=0664
+  when: nginx_use_cloudflare
+  notify:
+    - reload nginx
+ 
+
 # Vhost configuration.
 - include: vhosts.yml
 
